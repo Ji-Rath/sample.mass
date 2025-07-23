@@ -17,7 +17,7 @@ void UMSEntitySystem::Spawn(UMassEntityConfigAsset* EntityConfig, const FTransfo
     TArray<FMassEntityHandle> Entities;
     auto CreationContext = EntityManager->BatchCreateEntities(EntityTemplate.GetArchetype(), EntityTemplate.GetSharedFragmentValues(), Count, Entities);
     TConstArrayView<FInstancedStruct> FragmentInstances = EntityTemplate.GetInitialFragmentValues();
-    EntityManager->BatchSetEntityFragmentsValues(CreationContext->GetEntityCollection(), FragmentInstances);
+    EntityManager->BatchSetEntityFragmentValues(CreationContext->GetEntityCollections(*EntityManager.Get()), FragmentInstances);
 
     int SqrtCount = FMath::Sqrt((float)Count);
 
